@@ -21,4 +21,8 @@ class Cell
     @ship.hit
   end
 
+  def fired_upon?
+    @ship.health != @ship.length
+  end
+
 end
