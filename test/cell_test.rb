@@ -37,6 +37,9 @@ class CellTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
 
-    assert_equal false, cell.fired_upon?
+    cell.fire_upon
+    require "pry"; binding.pry
+    p cell.ship.health
+    # assert_equal false, cell.fired_upon?
   end
 end
