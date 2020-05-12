@@ -17,4 +17,12 @@ class Cell
     @ship = ship
   end
 
+  def fire_upon
+    @ship.hit
+  end
+
+  def fired_upon?
+    @ship.health != @ship.length
+  end
+
 end
