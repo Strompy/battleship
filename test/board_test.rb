@@ -11,6 +11,12 @@ class BoardTest < Minitest::Test
     assert_instance_of Board, board
   end
 
+  def test_cell_count
+    board = Board.new
+
+    assert_equal 16, board.cells.count 
+  end
+
   def test_vaildate_coordinates
     board = Board.new
 
