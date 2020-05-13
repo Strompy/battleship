@@ -30,15 +30,23 @@ class Cell
   end
 
   def render(visible = false)
-    if !empty? && fired_upon? == true
-      "X"
-    elsif @ship != nil && fired_upon? == true
-      "H"
-    elsif @ship == nil && fired_upon? == true
-      "M"
-    else
-      "."
-    end
 
+      if !empty? && fired_upon? == true && @ship.sunk?
+        "X"
+      elsif @ship != nil && fired_upon? == true
+        "H"
+      elsif @ship == nil && fired_upon? == true
+        "M"
+      elsif visible == true && !empty? && fired_upon? == true && @ship.sunk?
+        "X"
+      elsif visible == true && @ship != nil && fired_upon? == true
+        "H"
+      elsif visible == true && @ship == nil && fired_upon? == true
+        "M"
+      elsif visible == true && @ship != nil
+        "S"
+      else #visible == true
+        "."
+      end
   end
 end
