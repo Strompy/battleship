@@ -10,4 +10,10 @@ class BoardTest < Minitest::Test
 
     assert_instance_of Board, board
   end
+
+  def test_vaildate_coordinates
+    board = Board.new
+
+    assert_equal true, board.valid_coordinate?("A1")
+  end
 end
