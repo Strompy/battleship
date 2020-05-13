@@ -29,6 +29,10 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    ship.length == coordinates.count
+    if ship.length == coordinates.count
+      coordinates.each do |cell1, cell2|
+          cell2[1].to_i == cell1[1].to_i + 1
+      end
+    end
   end
 end
