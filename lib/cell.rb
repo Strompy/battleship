@@ -27,7 +27,18 @@ class Cell
     if @ship != nil
       @ship.hit
     end
-
   end
 
+  def render(visible = false)
+    if !empty? && fired_upon? == true
+      "X"
+    elsif @ship != nil && fired_upon? == true
+      "H"
+    elsif @ship == nil && fired_upon? == true
+      "M"
+    else
+      "."
+    end
+
+  end
 end
