@@ -55,7 +55,6 @@ class CellTest < Minitest::Test
   end
 
   def test_it_can_render_hit
-    skip
     cell = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
