@@ -54,4 +54,24 @@ class CellTest < Minitest::Test
     assert_equal "M", cell.render
   end
 
+  def test_it_can_render_hit
+    skip
+    cell = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+
+    assert_equal ".", cell.render
+    assert_equal "S", cell.render(true)
+
+    cell.fire_upon
+    assert_equal "H", cell.render
+    assert_equal false, cruiser.sunk?
+
+    cruiser.hit
+    cruiser.hit
+
+    assert_equal true, cruiser.sunk?
+    assert_equal "X", cell.render
+  end
+
 end
