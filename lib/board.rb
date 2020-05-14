@@ -63,10 +63,17 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    ship.length == coordinates.count
-
-  # consecutive numbers
-  # consecutive letters
+    if ship.length == coordinates.count
+      if coordinates_in_same_row?(coordinates)
+        coordinates_consecutive_numbers?(coordinates)
+      elsif coordinates_in_same_column?(coordinates)
+        coordinates_consecutive_letters?(coordinates)
+      else
+        false
+      end
+    else
+      false
+    end
   end
 
 end
