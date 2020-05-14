@@ -28,11 +28,30 @@ class Board
     @cells.keys.any?(cell)
   end
 
-  def valid_placement?(ship, coordinates)
-    if ship.length == coordinates.count
-      coordinates.each do |cell1, cell2|
-          cell2[1].to_i == cell1[1].to_i + 1
-      end
+  def num_consecutive(arg)
+    arg.each_cons(2).all? do |no|
+      (no[1][1].to_i - no[0][1].to_i) == 1
     end
+  end
+
+  def alpha_consecutive(arg)
+    arg.each_cons(2).all? do |alpha|
+      (alpha[1][0].ord - alpha[0][0].ord) == 1
+    end
+  end
+
+
+  def valid_placement?(ship, coordinates)
+  if ship.length == coordinates.count
+    if num_consecutive(coordinates)
+      true
+    elsif alpha_consecutive(coordinates)
+      true
+    else
+      false
+    end
+  else
+      false
+  end
   end
 end
