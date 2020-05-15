@@ -63,7 +63,9 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    if ship.length == coordinates.count
+    if ship.length == coordinates.count && coordinates.all? do |cell|
+      @cells[cell].ship == nil
+    end 
       if coordinates_in_same_row?(coordinates)
         coordinates_consecutive_numbers?(coordinates)
       elsif coordinates_in_same_column?(coordinates)
