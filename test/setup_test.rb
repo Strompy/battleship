@@ -24,11 +24,13 @@ class SetupTest < Minitest::Test
   end
 
   def test_computer_ship_placement
-    expected = nil
     expected = @player2.place(@cruiser, ["A1", "B3", "D4"])
     assert_equal false, @player2.valid_placement?(@cruiser, expected)
-    expected2 = @setup.make_valid(@cruiser)
-    require 'pry'; binding.pry
-    assert_equal true, @player2.valid_placement?(@cruiser, expected2)
+
+    expected = @setup.make_valid(@cruiser)
+    assert_equal true, @player2.valid_placement?(@cruiser, expected)
+
+    expected = @setup.make_valid(@submarine)
+    assert_equal true, @player2.valid_placement?(@submarine, expected)
   end
 end
