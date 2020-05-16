@@ -6,7 +6,7 @@ require './lib/cell'
 require './lib/game'
 
 class GameTest < Minitest::Test
-  def game
+  def setup
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
     @player1 = Board.new
