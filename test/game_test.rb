@@ -44,4 +44,11 @@ class GameTest < Minitest::Test
     assert_equal 5,  @player2.render(true).count("S")
   end
 
+  def test_computer_can_fire
+    @player2.computer_fire("B2")
+
+    assert_equal true, @player1.cells["B2"].fired_upon?
+    assert_equal false, @player1.cells["C2"].fired_upon?
+  end
+
 end
