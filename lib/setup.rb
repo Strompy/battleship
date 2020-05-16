@@ -18,4 +18,8 @@ class Setup
   cells
   end
 
+  def computer_place(ship)
+    @computer.place(ship, make_valid(ship))
+  end
+
 end
