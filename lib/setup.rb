@@ -13,8 +13,9 @@ class Setup
   def make_valid(ship)
     cells = []
     until @computer.valid_placement?(ship, cells) do
-      cells = @computer.cells.keys.sample(3)
+      cells = @computer.cells.keys.sample(ship.length)
     end
   cells
   end
+
 end
