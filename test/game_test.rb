@@ -51,4 +51,10 @@ class GameTest < Minitest::Test
     assert_equal "M", @player1.cells["B2"].render
   end
 
+  def test_random_cell_fired_upon?
+    cell = @game.computer_picks_cell
+
+    assert_equal true, @player1.valid_coordinate?(cell)
+  end
+
 end
