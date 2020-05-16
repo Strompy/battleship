@@ -2,7 +2,7 @@ require './lib/board'
 require './lib/ship'
 require './lib/cell'
 
-class Setup
+class Game
   attr_reader :player, :computer
 
   def initialize(player, computer)
