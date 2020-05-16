@@ -36,12 +36,12 @@ class SetupTest < Minitest::Test
 
   def test_computer_place_ship
     expected = @player2.render(true)
-    @player2.computer_place(@cruiser)
-    @player2.computer_place(@submarine)
+    @setup.computer_place(@cruiser)
+    @setup.computer_place(@submarine)
+    require 'pry'; binding.pry
 
-    refute expected, player2.render(true)
-    assert_equal true, @player2.valid_placement?(@cruiser)
-    assert_equal true, @player2.valid_placement?(@submarine)
+    refute_equal expected, @player2.render(true)
+    assert_equal 5,  @player2.render(true).count("S")
   end
 
 end
