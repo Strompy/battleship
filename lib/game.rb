@@ -26,4 +26,12 @@ class Game
     @player.cells[cell].fire_upon
   end
 
+  def computer_picks_cell
+    cell = @player.cells.values.sample(1)
+    until cell[0].fired_upon? == false do
+      cell = @player.cells.values.sample(1)
+    end
+    computer_fire((cell[0].coordinate))
+    cell[0].coordinate
+  end
 end
