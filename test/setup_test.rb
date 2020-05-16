@@ -25,8 +25,9 @@ class SetupTest < Minitest::Test
 
   def test_computer_ship_placement
     expected = nil
-    expected = @player2.cells.keys.shuffle
-    require 'pry'; binding.pry
-    assert_equal false, @player2.valid_placement?(@cruiser, expected[0..2])
+    expected = @player2.place(@cruiser, ["A1", "B3", "D4"])
+    assert_equal false, @player2.valid_placement?(@cruiser, expected)
+    @player2.make_valid
+    assert_equal true, @player2.valid_placement?
   end
 end
