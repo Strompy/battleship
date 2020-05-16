@@ -23,7 +23,7 @@ class SetupTest < Minitest::Test
     assert_equal @player2, @setup.computer
   end
 
-  def test_computer_ship_placement
+  def test_computer_valid_placement
     expected = @player2.place(@cruiser, ["A1", "B3", "D4"])
     assert_equal false, @player2.valid_placement?(@cruiser, expected)
 
@@ -33,4 +33,5 @@ class SetupTest < Minitest::Test
     expected = @setup.make_valid(@submarine)
     assert_equal true, @player2.valid_placement?(@submarine, expected)
   end
+
 end
