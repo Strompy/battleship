@@ -9,4 +9,13 @@ class Setup
     @player = player
     @computer = computer
   end
+
+  def make_valid(ship)
+    cells = []
+    until @computer.valid_placement?(ship, cells) == true do
+      cells = @computer.cells.keys.sample(3)
+      @computer.valid_placement?(ship, cells)
+    end
+    @computer.place(ship, cells)
+  end
 end

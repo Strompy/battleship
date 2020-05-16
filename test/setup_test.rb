@@ -27,7 +27,8 @@ class SetupTest < Minitest::Test
     expected = nil
     expected = @player2.place(@cruiser, ["A1", "B3", "D4"])
     assert_equal false, @player2.valid_placement?(@cruiser, expected)
-    @player2.make_valid
-    assert_equal true, @player2.valid_placement?
+    expected2 = @setup.make_valid(@cruiser)
+    require 'pry'; binding.pry
+    assert_equal true, @player2.valid_placement?(@cruiser, expected2)
   end
 end
