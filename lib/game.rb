@@ -22,4 +22,8 @@ class Game
     @computer.place(ship, make_valid(ship))
   end
 
+  def computer_fire(cell)
+    @player.cells[cell].fire_upon
+  end
+
 end
