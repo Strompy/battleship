@@ -12,10 +12,9 @@ class Setup
 
   def make_valid(ship)
     cells = []
-    until @computer.valid_placement?(ship, cells) == true do
+    until @computer.valid_placement?(ship, cells) do
       cells = @computer.cells.keys.sample(3)
-      @computer.valid_placement?(ship, cells)
     end
-    @computer.place(ship, cells)
+  cells
   end
 end
