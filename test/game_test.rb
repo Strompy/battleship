@@ -57,4 +57,9 @@ class GameTest < Minitest::Test
     assert_equal true, @player1.cells[cell].fired_upon?
   end
 
+  def test_game_start
+    @game.game_start
+    assert_equal "p", @game.player.gets.chomp!
+  end
+
 end
