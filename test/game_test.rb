@@ -53,7 +53,6 @@ class GameTest < Minitest::Test
 
   def test_random_cell_fired_upon?
     cell = @game.computer_picks_cell
-    require 'pry'; binding.pry
 
     assert_equal true, @player1.cells[cell].fired_upon?
   end
