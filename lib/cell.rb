@@ -45,7 +45,11 @@ class Cell
         "M"
       elsif visible == true && @ship != nil
         "S"
+<<<<<<< HEAD
       else
+=======
+      else #visible == true
+>>>>>>> 8f499d50c6a9a2ab42a24bac32f279e569b8d4e6
         "."
       end
   end
