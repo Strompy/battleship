@@ -33,7 +33,7 @@ class Game
     elsif @player.cells[cell].ship != nil
       puts "My shot on #{cell} was a hit."
       if @player.cells[cell].ship.sunk?
-        puts "I sunk your #{@player.cells[cell].ship}!"
+        puts "I sunk your #{@player.cells[cell].ship.name}!"
       end
     end
   end
@@ -50,7 +50,8 @@ class Game
   def player_turn
     print "Enter the coordinate for your shot: "
     input = gets.chomp!.upcase
-    until @computer.valid_coordinate?(input)
+    #require "pry"; binding.pry
+    until @computer.valid_coordinate?(input) && @computer.cells[input].fired_upon? == false
       puts "Please enter a valid coordinate: "
       input = gets.chomp!.upcase
     end
@@ -60,7 +61,7 @@ class Game
     elsif @computer.cells[input].ship != nil
       puts "Your shot on #{input} was a hit."
       if @computer.cells[input].ship.sunk?
-        puts "You sunk my #{@computer.cells[input].ship}!"
+        puts "You sunk my #{@computer.cells[input].ship.name}!"
       end
     end
   end
@@ -82,9 +83,9 @@ class Game
       player_lose = @submarine_player.sunk? && @cruiser_player.sunk?
     end
     if computer_lose
-      print "You won!"
+      print "You won! \n"
     elsif player_lose
-      print "I won!"
+      print "I won! \n"
     end
   end
 
