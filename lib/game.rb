@@ -50,7 +50,6 @@ class Game
   def player_turn
     print "Enter the coordinate for your shot: "
     input = gets.chomp!.upcase
-    #require "pry"; binding.pry
     until @computer.valid_coordinate?(input) && @computer.cells[input].fired_upon? == false
       puts "Please enter a valid coordinate: "
       input = gets.chomp!.upcase
@@ -70,7 +69,6 @@ class Game
     computer_lose = @submarine_computer.sunk? && @cruiser_computer.sunk?
     player_lose = @submarine_player.sunk? && @cruiser_player.sunk?
     until computer_lose || player_lose
-      # require "pry"; binding.pry
       2.times {puts "\n"}
       self.player_turn
       self.computer_picks_cell
