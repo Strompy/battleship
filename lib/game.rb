@@ -69,9 +69,11 @@ class Game
     computer_lose = @submarine_computer.sunk? && @cruiser_computer.sunk?
     player_lose = @submarine_player.sunk? && @cruiser_player.sunk?
     until computer_lose || player_lose
-      require "pry"; binding.pry
+      # require "pry"; binding.pry
+      2.times {puts "\n"}
       self.player_turn
       self.computer_picks_cell
+      puts "\n"
       puts "=============COMPUTER BOARD============="
       print @computer.render
       puts "==============PLAYER BOARD=============="
@@ -86,13 +88,16 @@ class Game
 
 
   def game_start
-    p "Welcome to BATTLESHIP \n Enter p to play. Enter q to quit."
+    puts "Welcome to BATTLESHIP!"
+    puts "Enter p to play. Enter q to quit."
     input = gets.chomp!
     if input == "q"
       p "Goodbye"
     elsif input == "p"
       computer_place(@submarine_computer)
       computer_place(@cruiser_computer)
+      5.times { puts "\n"}
+      puts "====================================="
       puts "I have laid out my ships on the grid."
       puts "You now need to lay out your two ships."
       puts "The Cruiser is three units long and the Submarine is two units long. "
@@ -100,10 +105,11 @@ class Game
       puts @player.render(true)
       player_cells = gets.chomp!.upcase.split
       until @player.valid_placement?(@cruiser_player, player_cells) do
-        puts "Please enter valid coordinates: "
+        puts "\n Please enter valid coordinates: "
         player_cells = gets.chomp!.upcase.split
       end
       @player.place(@cruiser_player, player_cells)
+      puts "\n"
       puts @player.render(true)
       puts "Enter the squares for the Submarine (2 spaces): "
       player_cells = gets.chomp!.upcase.split
@@ -113,9 +119,11 @@ class Game
       end
       @player.place(@submarine_player, player_cells)
       print @player.render(true)
+      puts "Let's play!"
       gameplay_loop
     else
-      p "Please enter 'p' to play or 'q' to quit"
+      p "Not a valid input"
+      game_start
     end
   end
 
