@@ -78,6 +78,8 @@ class Game
       print @computer.render
       puts "==============PLAYER BOARD=============="
       print @player.render(true)
+      computer_lose = @submarine_computer.sunk? && @cruiser_computer.sunk?
+      player_lose = @submarine_player.sunk? && @cruiser_player.sunk?
     end
     if computer_lose
       print "You won!"
@@ -92,7 +94,7 @@ class Game
     puts "Enter p to play. Enter q to quit."
     input = gets.chomp!
     if input == "q"
-      p "Goodbye"
+      puts "Goodbye"
     elsif input == "p"
       computer_place(@submarine_computer)
       computer_place(@cruiser_computer)
@@ -109,6 +111,7 @@ class Game
         player_cells = gets.chomp!.upcase.split
       end
       @player.place(@cruiser_player, player_cells)
+      puts "\n==Cruiser placed=="
       puts "\n"
       puts @player.render(true)
       puts "Enter the squares for the Submarine (2 spaces): "
@@ -118,8 +121,10 @@ class Game
         player_cells = gets.chomp!.upcase.split
       end
       @player.place(@submarine_player, player_cells)
+      puts "\n==Submarine placed=="
+      puts "\n"
       print @player.render(true)
-      puts "Let's play!"
+      puts "\nLet's play!"
       gameplay_loop
     else
       p "Not a valid input"
