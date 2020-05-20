@@ -62,6 +62,9 @@ class Game
     print "Enter the coordinate for your shot: "
     input = gets.chomp!.upcase
     until @computer.valid_coordinate?(input) && @computer.cells[input].fired_upon? == false
+      if @computer.valid_coordinate?(input) && @computer.cells[input].fired_upon?
+        puts "You have already shot #{input}"
+      end
       puts "Please enter a valid coordinate: "
       input = gets.chomp!.upcase
     end
