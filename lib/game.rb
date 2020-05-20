@@ -140,8 +140,7 @@ class Game
       p "Not a valid input"
       game_start
     end
-    @player = Board.new
-    @computer = Board.new
+    initialize
     self.game_start
   end
 
