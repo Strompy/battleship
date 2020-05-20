@@ -101,50 +101,61 @@ class Game
     end
   end
 
+  def battleship_start
+    computer_place(@submarine_computer)
+    computer_place(@cruiser_computer)
+    5.times { puts "\n"}
+    puts "====================================="
+    puts "I have laid out my ships on the grid."
+    puts "You now need to lay out your two ships."
+    puts "The Cruiser is three units long and the Submarine is two units long. "
+    puts "Enter the squares for the Cruiser (3 spaces): "
+    puts @player.render(true)
+  end
+
+  def player_place_cruiser
+    player_cells = gets.chomp!.upcase.split
+    until valid_player_input_cells?(player_cells) && @player.valid_placement?(@cruiser_player, player_cells) do
+      puts "\nPlease enter valid coordinates: "
+      player_cells = gets.chomp!.upcase.split
+    end
+    @player.place(@cruiser_player, player_cells)
+    puts "\n==Cruiser placed=="
+    puts "\n"
+    puts @player.render(true)
+    puts "Enter the squares for the Submarine (2 spaces): "
+  end
+
+  def player_place_sub
+    player_cells = gets.chomp!.upcase.split
+    until valid_player_input_cells?(player_cells) && @player.valid_placement?(@submarine_player, player_cells) do
+      puts "Please enter valid coordinates: "
+      player_cells = gets.chomp!.upcase.split
+    end
+    @player.place(@submarine_player, player_cells)
+    puts "\n==Submarine placed=="
+    puts "\n"
+    print @player.render(true)
+    puts "\nLet's play!"
+  end
 
   def game_start
     puts "Welcome to BATTLESHIP!"
     puts "Enter p to play. Enter q to quit."
     input = gets.chomp!
-    if input == "q"
+    if input == "p"
+      self.battleship_start
+      self.player_place_cruiser
+      self.player_place_sub
+      self.gameplay_loop
+    elsif input == "q"
       puts "Goodbye"
-    elsif input == "p"
-      computer_place(@submarine_computer)
-      computer_place(@cruiser_computer)
-      5.times { puts "\n"}
-      puts "====================================="
-      puts "I have laid out my ships on the grid."
-      puts "You now need to lay out your two ships."
-      puts "The Cruiser is three units long and the Submarine is two units long. "
-      puts "Enter the squares for the Cruiser (3 spaces): "
-      puts @player.render(true)
-      player_cells = gets.chomp!.upcase.split
-      until valid_player_input_cells?(player_cells) && @player.valid_placement?(@cruiser_player, player_cells) do
-        puts "\nPlease enter valid coordinates: "
-        player_cells = gets.chomp!.upcase.split
-      end
-      @player.place(@cruiser_player, player_cells)
-      puts "\n==Cruiser placed=="
-      puts "\n"
-      puts @player.render(true)
-      puts "Enter the squares for the Submarine (2 spaces): "
-      player_cells = gets.chomp!.upcase.split
-      until valid_player_input_cells?(player_cells) && @player.valid_placement?(@submarine_player, player_cells) do
-        puts "Please enter valid coordinates: "
-        player_cells = gets.chomp!.upcase.split
-      end
-      @player.place(@submarine_player, player_cells)
-      puts "\n==Submarine placed=="
-      puts "\n"
-      print @player.render(true)
-      puts "\nLet's play!"
-      gameplay_loop
-    else
+      exit(true)
+    elsif
       p "Not a valid input"
       game_start
     end
     initialize
-    self.game_start
+    game_start
   end
-
 end
