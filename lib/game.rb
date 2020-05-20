@@ -84,8 +84,8 @@ class Game
     player_lose = @submarine_player.sunk? && @cruiser_player.sunk?
     until computer_lose || player_lose
       2.times {puts "\n"}
-      self.player_turn
-      self.computer_picks_cell
+      player_turn
+      computer_picks_cell
       puts "\n"
       puts "=============COMPUTER BOARD============="
       print @computer.render
@@ -144,15 +144,15 @@ class Game
     puts "Enter p to play. Enter q to quit."
     input = gets.chomp!
     if input == "p"
-      self.battleship_start
-      self.player_place_cruiser
-      self.player_place_sub
-      self.gameplay_loop
+      battleship_start
+      player_place_cruiser
+      player_place_sub
+      gameplay_loop
     elsif input == "q"
       puts "Goodbye"
       exit(true)
     elsif
-      p "Not a valid input"
+      puts "Not a valid input"
       game_start
     end
     initialize
