@@ -52,6 +52,12 @@ class Game
     cell[0].coordinate
   end
 
+  def valid_player_input_cells?(input)
+  input.all? do |cell|
+    @player.valid_coordinate?(cell)
+  end
+  end
+
   def player_turn
     print "Enter the coordinate for your shot: "
     input = gets.chomp!.upcase
@@ -110,8 +116,8 @@ class Game
       puts "Enter the squares for the Cruiser (3 spaces): "
       puts @player.render(true)
       player_cells = gets.chomp!.upcase.split
-      until @player.valid_placement?(@cruiser_player, player_cells) do
-        puts "\n Please enter valid coordinates: "
+      until valid_player_input_cells?(player_cells) && @player.valid_placement?(@cruiser_player, player_cells) do
+        puts "\nPlease enter valid coordinates: "
         player_cells = gets.chomp!.upcase.split
       end
       @player.place(@cruiser_player, player_cells)
