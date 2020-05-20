@@ -126,7 +126,7 @@ class Game
       puts @player.render(true)
       puts "Enter the squares for the Submarine (2 spaces): "
       player_cells = gets.chomp!.upcase.split
-      until @player.valid_placement?(@submarine_player, player_cells) do
+      until valid_player_input_cells?(player_cells) && @player.valid_placement?(@submarine_player, player_cells) do
         puts "Please enter valid coordinates: "
         player_cells = gets.chomp!.upcase.split
       end
@@ -140,6 +140,9 @@ class Game
       p "Not a valid input"
       game_start
     end
+    @player = Board.new
+    @computer = Board.new
+    self.game_start
   end
 
 end
