@@ -3,7 +3,12 @@ require './lib/ship'
 require './lib/cell'
 
 class Game
-  attr_reader :player, :computer
+  attr_reader :player,
+              :computer,
+              :submarine_computer,
+              :cruiser_computer,
+              :submarine_player,
+              :cruiser_player
 
   def initialize
     @player = Board.new
@@ -45,6 +50,12 @@ class Game
     end
     computer_fire((cell[0].coordinate))
     cell[0].coordinate
+  end
+
+  def valid_player_input_cells?(input)
+  input.all? do |cell|
+    @player.valid_coordinate?(cell)
+  end
   end
 
   def player_turn
@@ -105,8 +116,8 @@ class Game
       puts "Enter the squares for the Cruiser (3 spaces): "
       puts @player.render(true)
       player_cells = gets.chomp!.upcase.split
-      until @player.valid_placement?(@cruiser_player, player_cells) do
-        puts "\n Please enter valid coordinates: "
+      until valid_player_input_cells?(player_cells) && @player.valid_placement?(@cruiser_player, player_cells) do
+        puts "\nPlease enter valid coordinates: "
         player_cells = gets.chomp!.upcase.split
       end
       @player.place(@cruiser_player, player_cells)
@@ -132,6 +143,3 @@ class Game
   end
 
 end
-
-game = Game.new
-game.game_start

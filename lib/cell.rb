@@ -45,7 +45,7 @@ class Cell
         "M"
       elsif visible == true && @ship != nil
         "S"
-      else 
+      else
         "."
       end
   end
